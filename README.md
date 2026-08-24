@@ -186,6 +186,12 @@ native 库使用 16 KB ELF page alignment；打包后可检查 APK ZIP 对齐：
 
 本项目仅用于自有设备的安全研究和学习。提权、内核利用和 KernelSU 加载可能导致数据丢失、系统不稳定、保修失效或设备损坏，请自行承担风险。
 
+致谢：
+[KSuRoot](https://github.com/hmascs/KSuRoot)
+[Root-My-Galaxy](https://github.com/BuSung-dev/Root-My-Galaxy)
+[GhostLock-Galaxy](https://github.com/wxxsfxyzm/GhostLock-Galaxy))
+酷安@大尾巴狼__大佬提供的S23U港版和国行zg1版本脚本 - https://www.coolapk.com/feed/73320085?s=ODc0YjI1ZjMxNTU1ZDJnNmE4YzZjMzd6i1656
+
 ## 许可证
 
 本项目沿用 Apache License 2.0，详见 [LICENSE](LICENSE)。
