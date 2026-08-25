@@ -177,6 +177,8 @@ native 库使用 16 KB ELF page alignment；打包后可检查 APK ZIP 对齐：
 
 ## 故障排查
 
+- 如果运行记录出现 `正在下载 payload`、`Payload: dm3q-S9180...` 或 `检查 GitHub 支持清单`，说明这次运行实际走了 Online 来源，不是美版 runner。重新安装包含 `assets/s918u1/` 的最新 APK，并确认运行日志出现 `使用已验证的美版 S918U1 runner 链`。
+- `CANNOT LINK EXECUTABLE ... ld-linux-aarch64.so.1` 表示被执行的是在线 Payload 的动态链接依赖，不表示内置美版 Payload 缺失；先检查上一条来源判断，再不要继续重复运行同一个在线 Payload。
 - `operation failed`：先确认设备没有已经加载 `kernelsu`，重启后再运行；不要在同一次启动中重复触发 exploit。
 - Shizuku 失败：确认 Shizuku 服务运行，并在 KSuRoot 中允许权限。
 - 16 KB 对齐错误：使用最新构建产物，并确认没有删除 CMake 的 16 KB linker 参数。

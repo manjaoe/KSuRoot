@@ -404,7 +404,9 @@ private fun RootApp(
             text = {
                 Text(
                     when {
-                        selectedProfile != null -> stringResource(R.string.install_confirm_body)
+                        payloadSource == PayloadSource.Online && selectedProfile != null -> {
+                            stringResource(R.string.install_confirm_body)
+                        }
                         else -> when (payloadSource) {
                             PayloadSource.Bundled -> stringResource(R.string.install_confirm_body_bundled)
                             PayloadSource.S918U1Runner -> stringResource(R.string.install_confirm_body_s918u1_runner)
@@ -420,7 +422,13 @@ private fun RootApp(
             confirmButton = {
                 FilledTonalButton(onClick = {
                     showInstallConfirmation = false
-                    openInstaller(selectedProfile?.profileId)
+                    openInstaller(
+                        if (payloadSource == PayloadSource.Online) {
+                            selectedProfile?.profileId
+                        } else {
+                            null
+                        },
+                    )
                     selectedProfile = null
                 }) {
                     Text(stringResource(R.string.action_confirm))
@@ -464,6 +472,11 @@ private fun RootApp(
                     onPayloadSourceChanged = { source ->
                         AppPreferences.setPayloadSource(context, source)
                         payloadSource = source
+                        if (source != PayloadSource.Online) {
+                            selectedProfile = null
+                            compatibilityWarning = null
+                            showTargetPicker = false
+                        }
                         installViewModel.refresh()
                     },
                     onImportPayload = {

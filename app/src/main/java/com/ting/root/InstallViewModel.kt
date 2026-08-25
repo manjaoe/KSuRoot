@@ -153,11 +153,12 @@ class InstallViewModel(application: Application) : AndroidViewModel(application)
                 }
                 val customInfo = CustomPayloadStore.current(app)
                 val requestedSource = AppPreferences.payloadSource(app)
-                val source = when {
-                    profileId != null -> PayloadSource.Online
-                    requestedSource == PayloadSource.Custom && customInfo == null -> {
+                val source = when (requestedSource) {
+                    PayloadSource.Custom -> if (customInfo == null) {
                         appendLog(app.getString(R.string.log_custom_missing_fallback))
                         PayloadSource.Online
+                    } else {
+                        PayloadSource.Custom
                     }
                     else -> requestedSource
                 }
