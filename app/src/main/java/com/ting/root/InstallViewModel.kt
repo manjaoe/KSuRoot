@@ -393,14 +393,12 @@ class InstallViewModel(application: Application) : AndroidViewModel(application)
         }
         if (shizukuEnabled()) {
             shizukuStage(kernelSu, SHIZUKU_KSUD_PATH, "755")
-            shizukuStage(kernelSu, SHIZUKU_KSUD_STAGE_PATH, "755")
             appendLog(app.getString(R.string.log_ksu_staged))
         } else {
             val source = shellQuote(kernelSu.absolutePath)
             val stageCommand =
-                "/system/bin/cp $source /data/local/tmp/ksud-s25u-kdp && " +
-                    "/system/bin/cp $source /data/local/tmp/.ksud-stage && " +
-                    "/system/bin/chmod 755 /data/local/tmp/ksud-s25u-kdp /data/local/tmp/.ksud-stage"
+                "/system/bin/cp $source $SHIZUKU_KSUD_PATH && " +
+                    "/system/bin/chmod 755 $SHIZUKU_KSUD_PATH"
             val stage = runHelperWithHelper(helper, "-c", stageCommand)
             require(stage.code == 0) { app.getString(R.string.error_ksu_stage, stage.output) }
             appendLog(app.getString(R.string.log_ksu_staged))
@@ -642,8 +640,7 @@ class InstallViewModel(application: Application) : AndroidViewModel(application)
         private const val SHIZUKU_LOG_PATH = "/data/local/tmp/s918u1-closed-candidate.log"
         private const val SHIZUKU_HELPER_PATH = "/data/local/tmp/cve-2026-43499-root"
         private const val SHIZUKU_PAYLOAD_PATH = "/data/local/tmp/cve-2026-43499"
-        private const val SHIZUKU_KSUD_PATH = "/data/local/tmp/ksud-s25u-kdp"
-        private const val SHIZUKU_KSUD_STAGE_PATH = "/data/local/tmp/.ksud-stage"
+        private const val SHIZUKU_KSUD_PATH = "/data/local/tmp/ksud-selected"
         private const val SHIZUKU_MANAGER_PATH = "/data/local/tmp/KernelSU_Manager_v3.2.5_32525.apk"
         private const val KERNEL_SU_MANAGER_ACTIVITY = "me.weishu.kernelsu/.ui.MainActivity"
         private const val WARMUP_COMMAND = "i=0; while [ \$i -lt 400 ]; do /system/bin/true; i=\$((i+1)); done"
