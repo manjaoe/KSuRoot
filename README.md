@@ -184,15 +184,16 @@ native 库使用 16 KB ELF page alignment；打包后可检查 APK ZIP 对齐：
 - 16 KB 对齐错误：使用最新构建产物，并确认没有删除 CMake 的 16 KB linker 参数。
 - Manager 未安装：查看日志中的 `KernelSU Manager auto-install failed`，确认 Shizuku shell 可以执行 `pm install`；root/KernelSU 已加载时可手动安装 `KernelSU_Manager_v3.2.5_32525.apk`。
 
+## 致谢
+
+- [KSuRoot](https://github.com/hmascs/KSuRoot)
+- [Root-My-Galaxy](https://github.com/BuSung-dev/Root-My-Galaxy)
+- [GhostLock-Galaxy](https://github.com/wxxsfxyzm/GhostLock-Galaxy)
+- 酷安用户“大尾巴狼__”提供的 S23 Ultra 港版和国行 ZG1 版本脚本：[原帖](https://www.coolapk.com/feed/73320085?s=ODc0YjI1ZjMxNTU1ZDJnNmE4YzZjMzd6i1656)
+
 ## 免责声明
 
 本项目仅用于自有设备的安全研究和学习。提权、内核利用和 KernelSU 加载可能导致数据丢失、系统不稳定、保修失效或设备损坏，请自行承担风险。
-
-致谢：
-[KSuRoot](https://github.com/hmascs/KSuRoot)
-[Root-My-Galaxy](https://github.com/BuSung-dev/Root-My-Galaxy)
-[GhostLock-Galaxy](https://github.com/wxxsfxyzm/GhostLock-Galaxy))
-酷安@大尾巴狼__大佬提供的S23U港版和国行zg1版本脚本 - https://www.coolapk.com/feed/73320085?s=ODc0YjI1ZjMxNTU1ZDJnNmE4YzZjMzd6i1656
 
 ## 许可证
 
